@@ -685,7 +685,7 @@
             <div class="p-3 rounded-xl border ${isLow ? 'bg-amber-50/70 border-amber-200' : 'bg-rose-50/70 border-rose-200'} flex items-center justify-between gap-2">
               <div>
                 <div class="text-xs font-bold text-slate-800">${item.name}</div>
-                <div class="text-[11px] text-slate-500">Batch: ${item.batch} • Exp: ${item.expiry}</div>
+                <div class="text-[11px] text-slate-500">Batch: ${item.batch} • Exp: ${item.expiry || 'Pending'}</div>
               </div>
               <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${isLow ? 'bg-amber-200 text-amber-900' : 'bg-rose-200 text-rose-900'} whitespace-nowrap">
                 ${isLow ? `Only ${item.qty} left` : 'Expiring Soon'}
