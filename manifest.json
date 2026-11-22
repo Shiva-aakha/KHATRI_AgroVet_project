@@ -1,0 +1,24 @@
+{
+  "name": "KHATRI AgroVet Center",
+  "short_name": "KHATRI AgroVet",
+  "description": "Retail Inventory, POS Billing & Farmer Udhaar Suite - Jahare Bazzar, Surkhet",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3f5f4",
+  "theme_color": "#14532d",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%2314532d'/%3E%3Ccircle cx='256' cy='256' r='190' fill='%23dcfce7'/%3E%3Cpath d='M224 128h64v96h96v64h-96v96h-64v-96h-96v-64h96v-96z' fill='%2315803d'/%3E%3Cpath d='M256 368c64-52 104-116 90-192-76 12-128 64-90 192z' fill='%2322c55e' opacity='0.85'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%2314532d'/%3E%3Ccircle cx='256' cy='256' r='190' fill='%23dcfce7'/%3E%3Cpath d='M224 128h64v96h96v64h-96v96h-64v-96h-96v-64h96v-96z' fill='%2315803d'/%3E%3Cpath d='M256 368c64-52 104-116 90-192-76 12-128 64-90 192z' fill='%2322c55e' opacity='0.85'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
