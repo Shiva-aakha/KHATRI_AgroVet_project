@@ -478,7 +478,66 @@
       </div>
     </div>
   </div>
+    <!-- ==================== EDIT INVENTORY MODAL ==================== -->
+  <div id="edit-inv-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 class="text-base font-bold text-slate-800">Update Stock &amp; Pricing</h3>
+          <p class="text-xs text-slate-500">Edit batch details, quantity, or unit rate</p>
+        </div>
+        <button type="button" onclick="closeEditInvModal()" class="text-slate-400 hover:text-slate-600 text-lg font-bold leading-none">×</button>
+      </div>
 
+      <form onsubmit="saveEditedInventoryItem(event)" class="space-y-3 text-xs">
+        <input type="hidden" id="edit-inv-id" />
+        <div>
+          <label class="block font-bold text-slate-600 mb-1">Product Name *</label>
+          <input type="text" id="edit-inv-name" required class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Category *</label>
+            <select id="edit-inv-category" required class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]">
+              <option value="Veterinary Medicine">Veterinary Medicine</option>
+              <option value="Livestock & Poultry Feed">Livestock &amp; Poultry Feed</option>
+              <option value="Seeds & Fertilizers">Seeds &amp; Fertilizers</option>
+              <option value="Agro-Tools & Sprayers">Agro-Tools &amp; Sprayers</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Batch No.</label>
+            <input type="text" id="edit-inv-batch" placeholder="Pending" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Expiry Date</label>
+            <input type="date" id="edit-inv-expiry" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Min Alert Qty</label>
+            <input type="number" id="edit-inv-min" min="0" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Stock Qty</label>
+            <input type="number" id="edit-inv-qty" min="0" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Unit Price (NPR)</label>
+            <input type="number" id="edit-inv-price" min="0" step="0.01" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button type="submit" class="flex-1 bg-[#15803d] hover:bg-[#166534] text-white font-bold py-2.5 rounded-xl transition">Save Changes</button>
+          <button type="button" onclick="closeEditInvModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl transition">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <script>
     // ==================== STATE INITIALIZATION (STARTS AT ZERO) ====================
     const STORAGE_KEY_PREFIX = 'khatri_agrovet_state_v2_';
