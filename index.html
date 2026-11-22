@@ -668,8 +668,8 @@
       const soonDate = new Date();
       soonDate.setDate(soonDate.getDate() + 60);
       const watchItems = appState.inventory.filter(item => {
-        const exp = new Date(item.expiry);
-        return item.qty <= (item.minQty || 10) || exp <= soonDate;
+        const isExpiring = item.expiry && new Date(item.expiry) <= soonDate;
+        return item.qty <= (item.minQty ?? 10) || isExpiring;
       }).slice(0, 4);
 
       if (watchItems.length === 0) {
