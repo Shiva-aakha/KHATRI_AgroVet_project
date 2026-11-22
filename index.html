@@ -87,8 +87,8 @@
       <!-- Status & Backup Trigger -->
       <div class="flex items-center gap-2">
         <div class="bg-[#0f3f22] border border-emerald-700/60 px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs">
-          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-          <span class="text-emerald-100 font-medium hidden md:inline">Local Session</span>
+          <span id="sync-status-dot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span id="sync-status-label" class="text-emerald-100 font-medium hidden md:inline">Connecting...</span>
           <span class="text-emerald-400">•</span>
           <span id="header-stock-value" class="font-bold text-white">NPR 0</span>
         </div>
@@ -422,7 +422,7 @@
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-5">
       <div class="flex items-start justify-between">
         <div>
-          <h3 class="text-base font-bold text-slate-800">Shop Multi-Device Sync &amp; Daily Backup</h3>
+          <h3 class="text-base font-bold text-slate-800">Shop Multi-Device Cloud Sync &amp; Backup</h3>
           <p class="text-xs text-slate-500">KHATRI AgroVet Center • Bheriganga-9, Jahare Bazzar, Surkhet</p>
         </div>
         <button onclick="closeBackupModal()" class="text-slate-400 hover:text-slate-600 text-lg font-bold leading-none">×</button>
@@ -431,9 +431,9 @@
       <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-2.5">
         <div class="flex items-center justify-between">
           <span class="text-[11px] font-bold uppercase text-emerald-900">Shared Shop Room PIN</span>
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">Local Session</span>
+          <span id="modal-sync-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Cloud Sync Active</span>
         </div>
-        <p class="text-xs text-slate-600">Enter the same Shop PIN on your phone, tablet, or shop laptop so both devices stay organized under the same room.</p>
+        <p class="text-xs text-slate-600">Enter the exact same Shop PIN on your phone and shop laptop so stock, POS bills, and Udhaar sync automatically.</p>
         <div class="flex gap-2">
           <input type="text" id="shop-pin-input" value="KHATRI-AgroVet-Jahare" class="w-full px-3 py-2 text-xs font-bold border border-emerald-300 rounded-xl bg-white" />
           <button onclick="saveShopPin()" class="bg-[#15803d] hover:bg-[#166534] text-white text-xs font-bold px-4 rounded-xl whitespace-nowrap">Sync Room</button>
@@ -563,14 +563,16 @@
   </div>
 
   <script>
-    // ==================== STATE INITIALIZATION (STARTS AT ZERO) ====================
+    // ==================== CLOUD SYNC & STATE INITIALIZATION ====================
     const STORAGE_KEY_PREFIX = 'khatri_agrovet_state_v2_';
+    const FIREBASE_DB_URL = 'https://khatri-agrovet-center-default-rtdb.asia-southeast1.firebasedatabase.app';
 
     function getEmptyState() {
       return {
         shopName: 'KHATRI AgroVet Center',
         location: 'Bheriganga-9, Jahare Bazzar, Surkhet',
         lastBillSeq: 0,
+        updatedAt: 0,
         inventory: [],
         sales: [],
         udhaar: [],
@@ -579,40 +581,106 @@
     }
 
     let currentPin = localStorage.getItem('khatri_agrovet_pin') || 'KHATRI-AgroVet-Jahare';
-    let appState = loadState();
+    let appState = loadLocalState();
     let cart = [];
     let selectedPayment = 'CASH';
     let isCheckingOut = false;
     let lastReceiptText = '';
 
-    function loadState() {
+    function sanitizeState(parsed) {
+      if (!parsed || typeof parsed !== 'object') return getEmptyState();
+      const salesArr = Array.isArray(parsed.sales) ? parsed.sales : [];
+      const savedSeq = Number.isFinite(parsed.lastBillSeq) ? parsed.lastBillSeq : salesArr.length;
+      return {
+        shopName: String(parsed.shopName || 'KHATRI AgroVet Center'),
+        location: String(parsed.location || 'Bheriganga-9, Jahare Bazzar, Surkhet'),
+        lastBillSeq: Math.max(savedSeq, salesArr.length),
+        updatedAt: Number(parsed.updatedAt) || 0,
+        inventory: Array.isArray(parsed.inventory) ? parsed.inventory : [],
+        sales: salesArr,
+        udhaar: Array.isArray(parsed.udhaar) ? parsed.udhaar : [],
+        advisories: Array.isArray(parsed.advisories) ? parsed.advisories : []
+      };
+    }
+
+    function loadLocalState() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY_PREFIX + currentPin);
-        if (!raw) return getEmptyState();
-        const parsed = JSON.parse(raw);
-        const salesArr = Array.isArray(parsed.sales) ? parsed.sales : [];
-        const savedSeq = Number.isFinite(parsed.lastBillSeq) ? parsed.lastBillSeq : salesArr.length;
-        return {
-          shopName: parsed.shopName || 'KHATRI AgroVet Center',
-          location: parsed.location || 'Bheriganga-9, Jahare Bazzar, Surkhet',
-          lastBillSeq: Math.max(savedSeq, salesArr.length),
-          inventory: Array.isArray(parsed.inventory) ? parsed.inventory : [],
-          sales: salesArr,
-          udhaar: Array.isArray(parsed.udhaar) ? parsed.udhaar : [],
-          advisories: Array.isArray(parsed.advisories) ? parsed.advisories : []
-        };
+        return raw ? sanitizeState(JSON.parse(raw)) : getEmptyState();
       } catch (e) {
         return getEmptyState();
       }
     }
 
+    function setSyncStatus(isOnline, text) {
+      const dot = document.getElementById('sync-status-dot');
+      const label = document.getElementById('sync-status-label');
+      const modalBadge = document.getElementById('modal-sync-badge');
+      if (dot) {
+        dot.classList.toggle('bg-emerald-400', isOnline);
+        dot.classList.toggle('bg-amber-400', !isOnline);
+      }
+      if (label) label.textContent = text;
+      if (modalBadge) {
+        modalBadge.textContent = text;
+        modalBadge.classList.toggle('bg-emerald-100', isOnline);
+        modalBadge.classList.toggle('text-emerald-800', isOnline);
+        modalBadge.classList.toggle('bg-amber-100', !isOnline);
+        modalBadge.classList.toggle('text-amber-800', !isOnline);
+      }
+    }
+
+    function getRoomEndpoint() {
+      const safeRoom = encodeURIComponent(currentPin.trim().toLowerCase());
+      return `${FIREBASE_DB_URL}/rooms/${safeRoom}.json`;
+    }
+
+    async function pushToCloud() {
+      try {
+        const res = await fetch(getRoomEndpoint(), {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appState)
+        });
+        if (res.ok) setSyncStatus(true, 'Cloud Synced');
+        else setSyncStatus(false, 'Sync Permission Error');
+      } catch (e) {
+        setSyncStatus(false, 'Offline (Local)');
+      }
+    }
+
+    async function pullFromCloud(forceOverwrite = false) {
+      try {
+        const res = await fetch(getRoomEndpoint(), { cache: 'no-store' });
+        if (!res.ok) return setSyncStatus(false, 'Sync Error');
+        const remote = await res.json();
+        if (remote && typeof remote === 'object') {
+          const cleanRemote = sanitizeState(remote);
+          if (forceOverwrite || cleanRemote.updatedAt > (appState.updatedAt || 0)) {
+            appState = cleanRemote;
+            localStorage.setItem(STORAGE_KEY_PREFIX + currentPin, JSON.stringify(appState));
+            renderAll();
+          }
+        } else if (appState.inventory.length > 0 || appState.sales.length > 0 || appState.udhaar.length > 0) {
+          // Seed cloud room if local device already has data
+          appState.updatedAt = Date.now();
+          await pushToCloud();
+        }
+        setSyncStatus(true, 'Cloud Synced');
+      } catch (e) {
+        setSyncStatus(false, 'Offline (Local)');
+      }
+    }
+
     function saveState() {
+      appState.updatedAt = Date.now();
       try {
         localStorage.setItem(STORAGE_KEY_PREFIX + currentPin, JSON.stringify(appState));
       } catch (e) {
-        alert('Browser storage limit reached! Please export a JSON backup and clear old sales.');
+        alert('Browser storage limit reached! Export a JSON backup.');
       }
       renderAll();
+      pushToCloud();
     }
 
     function formatNPR(num) {
@@ -1311,13 +1379,15 @@
       document.getElementById('backup-modal').classList.add('hidden');
     }
 
-    function saveShopPin() {
+    async function saveShopPin() {
       const val = document.getElementById('shop-pin-input').value.trim();
       if (!val) return;
       currentPin = val;
       localStorage.setItem('khatri_agrovet_pin', currentPin);
-      appState = loadState();
+      appState = loadLocalState();
       renderAll();
+      await pullFromCloud(true);
+      closeBackupModal();
       alert(`Synced to Shop Room PIN: ${currentPin}`);
     }
 
@@ -1346,6 +1416,7 @@
             shopName: String(imported.shopName || 'KHATRI AgroVet Center'),
             location: String(imported.location || 'Bheriganga-9, Jahare Bazzar, Surkhet'),
             lastBillSeq: Math.max(importedSeq, salesArr.length),
+            updatedAt: Date.now(),
             inventory: Array.isArray(imported.inventory) ? imported.inventory : [],
             sales: salesArr,
             udhaar: Array.isArray(imported.udhaar) ? imported.udhaar : [],
@@ -1353,7 +1424,7 @@
           };
           saveState();
           closeBackupModal();
-          alert(`Shop backup restored successfully (${appState.inventory.length} inventory items loaded)!`);
+          alert(`Shop backup restored & synced to cloud (${appState.inventory.length} inventory items loaded)!`);
         } catch (err) {
           alert('Invalid JSON backup file.');
         }
@@ -1364,7 +1435,7 @@
 
     function resetAllToZero() {
       const confirmed = confirm(
-        'Reset ALL Inventory, Counter Sales, Farmer Udhaar, and Advisory records to 0?\n\nTip: Export a JSON backup first if you want to keep current records.'
+        'Reset ALL Inventory, Counter Sales, Farmer Udhaar, and Advisory records to 0 across this Shop PIN?\n\nTip: Export a JSON backup first if you want to keep current records.'
       );
       if (!confirmed) return;
       appState = getEmptyState();
@@ -1381,9 +1452,11 @@
       renderUdhaarAndAdvisory();
     }
 
-    // Initial boot
+    // Initial boot + background sync every 6 seconds
     renderAll();
     renderCart();
+    pullFromCloud(false);
+    setInterval(() => pullFromCloud(false), 6000);
   </script>
 </body>
 </html>
