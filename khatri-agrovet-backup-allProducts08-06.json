@@ -1,0 +1,1138 @@
+{
+  "shopName": "KHATRI AgroVet Center",
+  "location": "Bheriganga-9, Jahare Bazzar, Surkhet",
+  "lastBillSeq": 0,
+  "updatedAt": 1795367830776,
+  "inventory": [
+    {
+      "id": "INV-1795367830794",
+      "name": "Broad Leaf Mustard Khumal Chauda (Rayo Khumal Chauda) – 10 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830793",
+      "name": "Broad Leaf Mustard Marpha (Rayo Marpha) – 5 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830792",
+      "name": "Cabbage (Banda) – 5 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830791",
+      "name": "Carrot (Gajar) – 5 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830790",
+      "name": "Cauliflower (Cauli) – 5 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830789",
+      "name": "Coriander (Dhaniya) – 100 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830788",
+      "name": "Coriander (Dhaniya) – 20 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830787",
+      "name": "Coriander (Dhaniya) – 500 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830786",
+      "name": "Four-Season Bean (Chaumase Simi) – 20 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830785",
+      "name": "Kidney Beans (Rajma) – 1 kg",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830784",
+      "name": "Mustard (Tori) – 1 kg",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830783",
+      "name": "Onion (Pyaj) – 15 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830782",
+      "name": "Pea (Kerau) – 20 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830781",
+      "name": "Radish 40-Day (Mula 40 Dine) – 20 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830780",
+      "name": "Radish Mino Early (Mula Mi. A.) – 1 kg",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830779",
+      "name": "Radish Mino Early (Mula Mi. A.) – 20 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830778",
+      "name": "Radish Mino Early (Mula Mi. A.) – 200 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830777",
+      "name": "Spinach (Palak) – 10 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367830776",
+      "name": "Swiss Chard – 10 g",
+      "category": "Seeds & Fertilizers",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794167",
+      "name": "Afanil 100ml (Bottle / Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794166",
+      "name": "B-Cox 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794165",
+      "name": "B-Cox 30ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794164",
+      "name": "Batissa 100gm Pachak (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794163",
+      "name": "Brimax 25gm (Tube)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794162",
+      "name": "Bromohex Vet 100ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794161",
+      "name": "Calcimix 250ml AD3 (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794160",
+      "name": "Caramine 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794159",
+      "name": "Charmil 25gm (Tube)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794158",
+      "name": "Cosomix Bolus (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794157",
+      "name": "Dexacin 10ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794156",
+      "name": "Diarock 30gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794155",
+      "name": "Diarok 30gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794154",
+      "name": "Doxy N 10gm Powder (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794153",
+      "name": "Doxy-N 10gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794152",
+      "name": "Expara Liq. 500ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794151",
+      "name": "Fly Killing 10gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794150",
+      "name": "Fudon 20 30gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794149",
+      "name": "Fudon 30gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794148",
+      "name": "Genta 100 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794147",
+      "name": "Glycal Gold 5 Ltr Can",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794146",
+      "name": "Glycal Gold 5 Ltr (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794145",
+      "name": "Glycal Plus 2 Ltr (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794144",
+      "name": "Glycal Susp 1 Ltr (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794143",
+      "name": "Glycal Susp 500ml (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794142",
+      "name": "Glycalsusp 1 Ltr (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794141",
+      "name": "I-Tin 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794140",
+      "name": "I-Tin 10ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794139",
+      "name": "Intermectin Super 50ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794138",
+      "name": "Intrazin 1750mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794137",
+      "name": "Intrazin 450mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794136",
+      "name": "Introflor Oral 100ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794135",
+      "name": "Introvit A+ 100gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794134",
+      "name": "Janova Cap. (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794133",
+      "name": "K-Prolium 30gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794132",
+      "name": "KB Plex 120ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794131",
+      "name": "Kenoxin 100ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794130",
+      "name": "Kenoxin 150mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794129",
+      "name": "KP Dox N 10gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794128",
+      "name": "Kutox 10ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794127",
+      "name": "Lacted Gel 300gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794126",
+      "name": "Levazod 100gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794125",
+      "name": "Levoxin L CP 100ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794124",
+      "name": "Malfe 1kg (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794123",
+      "name": "Malfe 450gm (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794122",
+      "name": "Mast 25gm (Tube)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794121",
+      "name": "Mastanil 50gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794120",
+      "name": "Megamix 1kg (Drum / Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794119",
+      "name": "Melopara Bolus (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794118",
+      "name": "Meloxin P 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794117",
+      "name": "Meloxin-I 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794116",
+      "name": "Meloxin-P 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794115",
+      "name": "Nanco Eye Drop 10ml (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794114",
+      "name": "Nanco Eye Drop (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794113",
+      "name": "OTC 500mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794112",
+      "name": "OTCycline 5% 50gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794111",
+      "name": "OTCycline Bolus 500mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794110",
+      "name": "OTCydin 5% 50gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794109",
+      "name": "Oteyclin 500mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794108",
+      "name": "Oxyticknil 30ml (Bottle / Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794107",
+      "name": "Pachak Batissa 100gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794106",
+      "name": "Pipraliv 30ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794105",
+      "name": "Praziben Tab (Box)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794104",
+      "name": "Rat Book (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794103",
+      "name": "Ruchamex 15gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794102",
+      "name": "Rumentone Bolus (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794101",
+      "name": "Ruminsa Batissa 75gm (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794100",
+      "name": "Sutkeri Shakti 1kg (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794099",
+      "name": "Sutkeri Shakti 450gm (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794098",
+      "name": "Syringe 10ml (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794097",
+      "name": "Syringe 20ml (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794096",
+      "name": "Syringe 5ml (Pieces)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794095",
+      "name": "Topicure Spray 75ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794094",
+      "name": "Topicure Spray (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794093",
+      "name": "Tricoliv 1 Ltr (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794092",
+      "name": "Tricoliv 120ml Vet (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794091",
+      "name": "Tricoliv 500ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794090",
+      "name": "Tricoliv Vet 120ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794089",
+      "name": "Tricoliv Vet 500ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794088",
+      "name": "Troflox SA 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794087",
+      "name": "TT Oil 60ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794086",
+      "name": "Uroplus 100ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794085",
+      "name": "V Tone 30ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794084",
+      "name": "V Tone 60ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794083",
+      "name": "Valbazin 1 Ltr (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794082",
+      "name": "Valbazin 120ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794081",
+      "name": "Valbazin 200mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794080",
+      "name": "Valbazin 5 Ltr (Jar)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794079",
+      "name": "Valbazin 600mg (Strip)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794078",
+      "name": "Vitamin B-Cox 100ml (Vial)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "id": "INV-1795367794077",
+      "name": "Yakrifit 500ml (Bottle)",
+      "category": "Veterinary Medicine",
+      "batch": "Pending",
+      "qty": 0,
+      "price": 0,
+      "expiry": null,
+      "minQty": 10
+    },
+    {
+      "batch": "Pending",
+      "category": "Livestock & Poultry Feed",
+      "id": "INV-1795365912815",
+      "minQty": 10,
+      "name": "Poshak B0 Pellet Feed (Sack)",
+      "price": 0,
+      "qty": 0
+    },
+    {
+      "batch": "Pending",
+      "category": "Livestock & Poultry Feed",
+      "id": "INV-1795365912814",
+      "minQty": 10,
+      "name": "Poshak B1 Pellet Feed (Sack)",
+      "price": 0,
+      "qty": 0
+    },
+    {
+      "batch": "Pending",
+      "category": "Livestock & Poultry Feed",
+      "id": "INV-1795365912813",
+      "minQty": 10,
+      "name": "Poshak B2 Pellet Feed (Sack)",
+      "price": 0,
+      "qty": 0
+    }
+  ],
+  "sales": [],
+  "udhaar": [],
+  "advisories": []
+}
