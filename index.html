@@ -697,21 +697,125 @@
     }
 
     // ==================== INVENTORY MANAGEMENT ====================
+    function toggleInventoryAddMode(mode) {
+      const singleForm = document.getElementById('form-single-inv');
+      const bulkForm = document.getElementById('form-bulk-inv');
+      const btnSingle = document.getElementById('btn-mode-single');
+      const btnBulk = document.getElementById('btn-mode-bulk');
+
+      if (mode === 'bulk') {
+        singleForm.classList.add('hidden');
+        bulkForm.classList.remove('hidden');
+        btnBulk.classList.add('bg-[#15803d]', 'text-white');
+        btnBulk.classList.remove('text-slate-600');
+        btnSingle.classList.remove('bg-[#15803d]', 'text-white');
+        btnSingle.classList.add('text-slate-600');
+      } else {
+        bulkForm.classList.add('hidden');
+        singleForm.classList.remove('hidden');
+        btnSingle.classList.add('bg-[#15803d]', 'text-white');
+        btnSingle.classList.remove('text-slate-600');
+        btnBulk.classList.remove('bg-[#15803d]', 'text-white');
+        btnBulk.classList.add('text-slate-600');
+      }
+    }
+
     function addInventoryItem(e) {
       e.preventDefault();
+      const rawBatch = document.getElementById('inv-batch').value.trim();
+      const rawExpiry = document.getElementById('inv-expiry').value;
+      const rawQty = parseInt(document.getElementById('inv-qty').value, 10);
+      const rawPrice = parseFloat(document.getElementById('inv-price').value);
+      const rawMin = parseInt(document.getElementById('inv-min').value, 10);
+
       const newItem = {
         id: 'INV-' + Date.now(),
         name: document.getElementById('inv-name').value.trim(),
         category: document.getElementById('inv-category').value,
-        batch: document.getElementById('inv-batch').value.trim(),
-        qty: parseInt(document.getElementById('inv-qty').value, 10),
-        price: parseFloat(document.getElementById('inv-price').value),
-        expiry: document.getElementById('inv-expiry').value,
-        minQty: parseInt(document.getElementById('inv-min').value, 10) || 10
+        batch: rawBatch || 'Pending',
+        qty: Number.isFinite(rawQty) && rawQty >= 0 ? rawQty : 0,
+        price: Number.isFinite(rawPrice) && rawPrice >= 0 ? rawPrice : 0,
+        expiry: rawExpiry || null,
+        minQty: Number.isFinite(rawMin) && rawMin >= 0 ? rawMin : 10
       };
       appState.inventory.unshift(newItem);
       e.target.reset();
       document.getElementById('inv-min').value = 10;
+      saveState();
+    }
+
+    function bulkAddInventoryItems(e) {
+      e.preventDefault();
+      const rawText = document.getElementById('inv-bulk-names').value;
+      const category = document.getElementById('inv-bulk-category').value;
+
+      const names = rawText
+        .split(/[\n,]+/)
+        .map(n => n.trim())
+        .filter(n => n.length > 0);
+
+      if (names.length === 0) return;
+
+      const now = Date.now();
+      names.reverse().forEach((name, idx) => {
+        appState.inventory.unshift({
+          id: 'INV-' + (now + idx),
+          name,
+          category,
+          batch: 'Pending',
+          qty: 0,
+          price: 0,
+          expiry: null,
+          minQty: 10
+        });
+      });
+
+      e.target.reset();
+      toggleInventoryAddMode('single');
+      saveState();
+    }
+
+    function openEditInvModal(id) {
+      const item = appState.inventory.find(i => i.id === id);
+      if (!item) return;
+
+      document.getElementById('edit-inv-id').value = item.id;
+      document.getElementById('edit-inv-name').value = item.name;
+      document.getElementById('edit-inv-category').value = item.category;
+      document.getElementById('edit-inv-batch').value = item.batch === 'Pending' ? '' : (item.batch || '');
+      document.getElementById('edit-inv-expiry').value = item.expiry && item.expiry !== 'Pending' ? item.expiry : '';
+      document.getElementById('edit-inv-min').value = item.minQty ?? 10;
+      document.getElementById('edit-inv-qty').value = item.qty ?? 0;
+      document.getElementById('edit-inv-price').value = item.price ?? 0;
+
+      document.getElementById('edit-inv-modal').classList.remove('hidden');
+    }
+
+    function closeEditInvModal() {
+      document.getElementById('edit-inv-modal').classList.add('hidden');
+    }
+
+    function saveEditedInventoryItem(e) {
+      e.preventDefault();
+      const id = document.getElementById('edit-inv-id').value;
+      const item = appState.inventory.find(i => i.id === id);
+      if (!item) return;
+
+      const rawBatch = document.getElementById('edit-inv-batch').value.trim();
+      const rawExpiry = document.getElementById('edit-inv-expiry').value;
+      const rawQty = parseInt(document.getElementById('edit-inv-qty').value, 10);
+      const rawPrice = parseFloat(document.getElementById('edit-inv-price').value);
+      const rawMin = parseInt(document.getElementById('edit-inv-min').value, 10);
+
+      item.name = document.getElementById('edit-inv-name').value.trim();
+      item.category = document.getElementById('edit-inv-category').value;
+      item.batch = rawBatch || 'Pending';
+      item.expiry = rawExpiry || null;
+      item.qty = Number.isFinite(rawQty) && rawQty >= 0 ? rawQty : 0;
+      item.price = Number.isFinite(rawPrice) && rawPrice >= 0 ? rawPrice : 0;
+      item.minQty = Number.isFinite(rawMin) && rawMin >= 0 ? rawMin : 10;
+
+      closeEditInvModal();
       saveState();
     }
 
@@ -732,7 +836,8 @@
       const catFilter = document.getElementById('inv-filter-cat').value;
 
       const filtered = appState.inventory.filter(item => {
-        const matchesSearch = item.name.toLowerCase().includes(query) || item.batch.toLowerCase().includes(query);
+        const batchText = (item.batch || 'Pending').toLowerCase();
+        const matchesSearch = item.name.toLowerCase().includes(query) || batchText.includes(query);
         const matchesCat = catFilter === 'ALL' || item.category === catFilter;
         return matchesSearch && matchesCat;
       });
@@ -744,7 +849,7 @@
         tbody.innerHTML = `
           <tr>
             <td colspan="7" class="py-8 text-center text-slate-400">
-              No stock items found. Use the form above to add your shop's inventory.
+              No stock items found. Use Single Product or Bulk Add Names above to add items.
             </td>
           </tr>
         `;
@@ -752,20 +857,23 @@
       }
 
       tbody.innerHTML = filtered.map(item => {
-        const isLow = item.qty <= (item.minQty || 10);
+        const isLow = item.qty <= (item.minQty ?? 10);
+        const batchLabel = item.batch || 'Pending';
+        const expiryLabel = item.expiry || 'Pending';
         return `
           <tr class="hover:bg-slate-50/80">
             <td class="py-3 px-3">
               <div class="font-bold text-slate-800">${item.name}</div>
-              <div class="text-[11px] text-slate-400">Batch: ${item.batch}</div>
+              <div class="text-[11px] ${batchLabel === 'Pending' ? 'text-amber-600 italic' : 'text-slate-400'}">Batch: ${batchLabel}</div>
             </td>
             <td class="py-3 px-3 text-slate-600">${item.category}</td>
-            <td class="py-3 px-3 text-slate-600">${item.expiry}</td>
+            <td class="py-3 px-3 ${expiryLabel === 'Pending' ? 'text-amber-600 italic' : 'text-slate-600'}">${expiryLabel}</td>
             <td class="py-3 px-3 text-right font-bold ${isLow ? 'text-amber-600' : 'text-slate-800'}">${item.qty}</td>
             <td class="py-3 px-3 text-right text-slate-700">${formatNPR(item.price)}</td>
             <td class="py-3 px-3 text-right font-bold text-slate-800">${formatNPR(item.qty * item.price)}</td>
             <td class="py-3 px-3 text-center">
               <div class="inline-flex items-center gap-1">
+                <button onclick="openEditInvModal('${item.id}')" class="px-2.5 py-1 rounded bg-sky-100 text-sky-800 font-bold hover:bg-sky-200">Edit</button>
                 <button onclick="adjustStock('${item.id}', 1)" class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold hover:bg-emerald-200">+1</button>
                 <button onclick="adjustStock('${item.id}', -1)" class="px-2 py-1 rounded bg-amber-100 text-amber-800 font-bold hover:bg-amber-200">-1</button>
                 <button onclick="deleteInventoryItem('${item.id}')" class="px-2 py-1 rounded bg-rose-100 text-rose-700 font-bold hover:bg-rose-200">×</button>
