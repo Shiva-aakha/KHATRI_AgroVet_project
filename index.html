@@ -193,32 +193,67 @@
 
     <!-- ==================== TAB 2: INVENTORY (5L) ==================== -->
     <section id="tab-inventory" class="hidden space-y-6">
-      <!-- Add New Stock Batch Form -->
-      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-        <h2 class="text-base font-bold text-slate-800 mb-1">Add New Product / Stock Batch</h2>
-        <p class="text-xs text-slate-500 mb-4">Enter new inventory items purchased for KHATRI AgroVet Center</p>
-        <form onsubmit="addInventoryItem(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
-          <input type="text" id="inv-name" required placeholder="Product Name (e.g., Urea 50kg)" class="lg:col-span-2 px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
-          <select id="inv-category" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]">
+      <!-- Add New Stock Batch Form (Single & Bulk Mode) -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-base font-bold text-slate-800">Add Product / Stock Batch</h2>
+            <p class="text-xs text-slate-500">Only Product Name &amp; Category are required — fill Batch, Expiry, Qty &amp; Price anytime later</p>
+          </div>
+          <div class="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-bold">
+            <button type="button" id="btn-mode-single" onclick="toggleInventoryAddMode('single')" class="px-3 py-1.5 rounded-lg bg-[#15803d] text-white transition">Single Product</button>
+            <button type="button" id="btn-mode-bulk" onclick="toggleInventoryAddMode('bulk')" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">Bulk Add Names</button>
+          </div>
+        </div>
+
+        <!-- Single Product Form -->
+        <form id="form-single-inv" onsubmit="addInventoryItem(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+          <input type="text" id="inv-name" required placeholder="Product Name * (e.g., Urea 50kg)" class="lg:col-span-2 px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          <select id="inv-category" required class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]">
             <option value="Veterinary Medicine">Veterinary Medicine</option>
-            <option value="Livestock & Poultry Feed">Livestock & Poultry Feed</option>
-            <option value="Seeds & Fertilizers">Seeds & Fertilizers</option>
-            <option value="Agro-Tools & Sprayers">Agro-Tools & Sprayers</option>
+            <option value="Livestock & Poultry Feed">Livestock &amp; Poultry Feed</option>
+            <option value="Seeds & Fertilizers">Seeds &amp; Fertilizers</option>
+            <option value="Agro-Tools & Sprayers">Agro-Tools &amp; Sprayers</option>
           </select>
-          <input type="text" id="inv-batch" required placeholder="Batch No. (e.g., B-101)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
-          <input type="number" id="inv-qty" required min="1" placeholder="Quantity" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
-          <input type="number" id="inv-price" required min="1" placeholder="Unit Price (NPR)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          <input type="text" id="inv-batch" placeholder="Batch No. (Optional)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          <input type="number" id="inv-qty" min="0" placeholder="Qty (Default 0)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+          <input type="number" id="inv-price" min="0" step="0.01" placeholder="Unit Price NPR (Default 0)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
           <div class="sm:col-span-2 lg:col-span-3 flex items-center gap-2">
-            <label class="text-xs text-slate-600 font-medium whitespace-nowrap">Expiry Date:</label>
-            <input type="date" id="inv-expiry" required class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+            <label class="text-xs text-slate-600 font-medium whitespace-nowrap">Expiry (Optional):</label>
+            <input type="date" id="inv-expiry" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
           </div>
           <div class="sm:col-span-2 lg:col-span-2 flex items-center gap-2">
             <label class="text-xs text-slate-600 font-medium whitespace-nowrap">Min Alert Qty:</label>
-            <input type="number" id="inv-min" placeholder="10" min="1" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+            <input type="number" id="inv-min" value="10" min="0" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
           </div>
           <button type="submit" class="bg-[#15803d] hover:bg-[#166534] text-white font-bold text-xs py-2.5 px-4 rounded-xl transition">
             + Add to Stock
           </button>
+        </form>
+
+        <!-- Bulk Add Names Form -->
+        <form id="form-bulk-inv" onsubmit="bulkAddInventoryItems(event)" class="hidden space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="sm:col-span-2">
+              <label class="block text-[11px] font-bold text-slate-600 mb-1">Paste Product Names (One per line or comma-separated) *</label>
+              <textarea id="inv-bulk-names" rows="4" required placeholder="Oxytetracycline LA 50ml&#10;Calcium Bolus Strip&#10;Albendazole Suspension 1L&#10;Liver Tonic 500ml" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]"></textarea>
+            </div>
+            <div class="space-y-3 flex flex-col justify-between">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-600 mb-1">Assign Category *</label>
+                <select id="inv-bulk-category" required class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]">
+                  <option value="Veterinary Medicine">Veterinary Medicine</option>
+                  <option value="Livestock & Poultry Feed">Livestock &amp; Poultry Feed</option>
+                  <option value="Seeds & Fertilizers">Seeds &amp; Fertilizers</option>
+                  <option value="Agro-Tools & Sprayers">Agro-Tools &amp; Sprayers</option>
+                </select>
+                <p class="text-[11px] text-slate-400 mt-2">All pasted items initialize with Batch: <strong>Pending</strong>, Expiry: <strong>Pending</strong>, Qty: <strong>0</strong>, and Price: <strong>NPR 0</strong>.</p>
+              </div>
+              <button type="submit" class="w-full bg-[#15803d] hover:bg-[#166534] text-white font-bold text-xs py-2.5 px-4 rounded-xl transition">
+                + Add All Listed Products
+              </button>
+            </div>
+          </div>
         </form>
       </div>
 
@@ -226,13 +261,13 @@
       <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div class="flex flex-wrap items-center gap-2">
-            <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search product or Batch..." class="px-3.5 py-2 text-xs border border-slate-300 rounded-xl w-56 focus:outline-none focus:border-[#15803d]" />
+            <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search product or batch..." class="px-3.5 py-2 text-xs border border-slate-300 rounded-xl w-56 focus:outline-none focus:border-[#15803d]" />
             <select id="inv-filter-cat" onchange="renderInventory()" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]">
               <option value="ALL">All Categories</option>
               <option value="Veterinary Medicine">Veterinary Medicine</option>
-              <option value="Livestock & Poultry Feed">Livestock & Poultry Feed</option>
-              <option value="Seeds & Fertilizers">Seeds & Fertilizers</option>
-              <option value="Agro-Tools & Sprayers">Agro-Tools & Sprayers</option>
+              <option value="Livestock & Poultry Feed">Livestock &amp; Poultry Feed</option>
+              <option value="Seeds & Fertilizers">Seeds &amp; Fertilizers</option>
+              <option value="Agro-Tools & Sprayers">Agro-Tools &amp; Sprayers</option>
             </select>
           </div>
           <div class="text-xs font-semibold text-slate-600">
@@ -244,7 +279,7 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500">
-                <th class="py-3 px-3">Product & Batch</th>
+                <th class="py-3 px-3">Product &amp; Batch</th>
                 <th class="py-3 px-3">Category</th>
                 <th class="py-3 px-3">Expiry</th>
                 <th class="py-3 px-3 text-right">Stock Qty</th>
