@@ -1144,6 +1144,8 @@
 
       const custName = document.getElementById('pos-customer-name').value.trim();
       const custPhone = document.getElementById('pos-customer-phone').value.trim();
+      const custPhone = document.getElementById('pos-customer-address').value.trim();
+
 
       if (selectedPayment === 'UDHAAR' && !custName) {
         return alert('Please enter the Farmer Name for Udhaar (Credit) billing.');
@@ -1176,6 +1178,7 @@
           date: today,
           customer: customerLabel,
           phone: custPhone,
+          village: custVillage,
           payment: selectedPayment,
           total,
           items: itemsSnapshot
@@ -1186,7 +1189,7 @@
           appState.udhaar.unshift({
             id: 'UDH-' + Date.now(),
             farmer: custName,
-            village: custPhone || 'Jahare Bazzar',
+            village: [custVillage || 'Jahare Bazzar', custPhone].filter(Boolean).join(' • '),
             items: itemsSnapshot.map(c => `${c.qty}x ${c.name}`).join(', '),
             amount: total,
             dueDate: document.getElementById('pos-due-date').value || today
@@ -1198,8 +1201,12 @@
         lastReceiptText =
           `KHATRI AGROVET CENTER\n` +
           `Bheriganga-9, Jahare Bazzar, Surkhet\n` +
+          `Shop Contact: 9860737308, 9848159594\n` +
           `${billNo} | Date: ${today}\n` +
-          `Customer: ${customerLabel} (${selectedPayment})\n` +
+          `Customer: ${customerLabel}\n` +
+          `Customer Phone: ${custPhone}\n +
+          `Payment:${selectedPayment}\n` +
+           + \n` +
           `----------------------------\n` +
           `${linesText}\n` +
           `----------------------------\n` +
