@@ -336,10 +336,10 @@
           <div class="grid grid-cols-2 gap-2">
             <input type="text" id="pos-customer-name" placeholder="Farmer Name (Optional)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
             <input type="text" id="pos-customer-phone" placeholder="Phone Number" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
-            <input type="text" id="pos-customer-address" placeholder="Village / Address (Optional)" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" />
+            <input type="text" id="pos-customer-address" placeholder="Village / Address (Optional)" class="col-span-2 px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:border-[#15803d]" /> 
           </div>
 
-          <div id="pos-cart-list" class="divide-y divide-slate-100 max-h-64 overflow-y-auto min-h-[120px]"></div>
+        <div id="pos-cart-list" class="divide-y divide-slate-100 max-h-64 overflow-y-auto min-h-[120px]"></div>
         </div>
 
         <div class="border-t border-slate-200 pt-3 space-y-3">
@@ -467,7 +467,7 @@
     </div>
   </div>
 
-  <!-- ==================== RECEIPT MODAL ==================== -->
+ <!-- ==================== RECEIPT MODAL ==================== -->
   <div id="receipt-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-xl space-y-4">
       <div id="receipt-print-area" class="text-xs space-y-3 text-slate-800">
@@ -481,8 +481,10 @@
           <span id="rec-bill-no">Bill #001</span>
           <span id="rec-date"></span>
         </div>
-        <div class="text-[11px] text-slate-700">
+        <div class="text-[11px] text-slate-700 leading-relaxed">
           <strong>Customer:</strong> <span id="rec-customer">Walk-in Farmer</span><br/>
+          <span id="rec-phone-row" class="hidden"><strong>Contact:</strong> <span id="rec-phone"></span><br/></span>
+          <span id="rec-address-row" class="hidden"><strong>Address:</strong> <span id="rec-address"></span><br/></span>
           <strong>Payment:</strong> <span id="rec-payment">CASH</span>
         </div>
         <div id="rec-items" class="border-y border-dashed border-slate-300 py-2 space-y-1"></div>
@@ -495,8 +497,9 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-3 gap-2 pt-2">
+      <div class="grid grid-cols-2 gap-2 pt-2">
         <button onclick="window.print()" class="bg-[#15803d] hover:bg-[#166534] text-white font-bold text-xs py-2.5 rounded-xl transition">Print 80mm</button>
+        <button onclick="shareWhatsAppReceipt()" class="bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs py-2.5 rounded-xl transition">WhatsApp Bill</button>
         <button id="btn-copy-receipt" onclick="copyWhatsAppReceipt()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-xs py-2.5 rounded-xl transition">Copy Text</button>
         <button onclick="closeReceiptModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl transition">Close</button>
       </div>
@@ -1138,14 +1141,15 @@
       else dueWrapper.classList.add('hidden');
     }
 
+   let lastCustomerPhone = '';
+
     function completeCheckout() {
       if (isCheckingOut) return;
       if (cart.length === 0) return alert('Add at least one item to the bill.');
 
       const custName = document.getElementById('pos-customer-name').value.trim();
       const custPhone = document.getElementById('pos-customer-phone').value.trim();
-      const custPhone = document.getElementById('pos-customer-address').value.trim();
-
+      const custVillage = document.getElementById('pos-customer-address').value.trim();
 
       if (selectedPayment === 'UDHAAR' && !custName) {
         return alert('Please enter the Farmer Name for Udhaar (Credit) billing.');
@@ -1172,6 +1176,7 @@
         appState.lastBillSeq = (Number(appState.lastBillSeq) || appState.sales.length) + 1;
         const billNo = 'BILL-' + String(appState.lastBillSeq).padStart(3, '0');
         const customerLabel = custName || 'Walk-in Farmer';
+        lastCustomerPhone = custPhone;
 
         appState.sales.unshift({
           billNo,
@@ -1196,7 +1201,7 @@
           });
         }
 
-        // Build plain-text receipt for WhatsApp / SMS copy
+        // Build plain-text receipt for WhatsApp / SMS
         const linesText = itemsSnapshot.map(c => `- ${c.name} x ${c.qty}: ${formatNPR(c.qty * c.price)}`).join('\n');
         lastReceiptText =
           `KHATRI AGROVET CENTER\n` +
@@ -1204,19 +1209,40 @@
           `Shop Contact: 9860737308, 9848159594\n` +
           `${billNo} | Date: ${today}\n` +
           `Customer: ${customerLabel}\n` +
-          `Customer Phone: ${custPhone}\n +
-          `Payment:${selectedPayment}\n` +
-           + \n` +
+          (custPhone ? `Contact: ${custPhone}\n` : '') +
+          (custVillage ? `Address: ${custVillage}\n` : '') +
+          `Payment: ${selectedPayment}\n` +
           `----------------------------\n` +
           `${linesText}\n` +
           `----------------------------\n` +
           `TOTAL: ${formatNPR(total)}\n` +
-          `Thank you for farming with us!`;
+          `Thank you for farming with KHATRI AgroVet Center!`;
 
         // Populate Receipt Modal safely
         document.getElementById('rec-bill-no').textContent = billNo;
         document.getElementById('rec-date').textContent = today;
         document.getElementById('rec-customer').textContent = customerLabel;
+
+        const phoneRow = document.getElementById('rec-phone-row');
+        if (phoneRow) {
+          if (custPhone) {
+            document.getElementById('rec-phone').textContent = custPhone;
+            phoneRow.classList.remove('hidden');
+          } else {
+            phoneRow.classList.add('hidden');
+          }
+        }
+
+        const addrRow = document.getElementById('rec-address-row');
+        if (addrRow) {
+          if (custVillage) {
+            document.getElementById('rec-address').textContent = custVillage;
+            addrRow.classList.remove('hidden');
+          } else {
+            addrRow.classList.add('hidden');
+          }
+        }
+
         document.getElementById('rec-payment').textContent = selectedPayment;
         document.getElementById('rec-items').innerHTML = itemsSnapshot.map(c => `
           <div class="flex justify-between">
@@ -1227,8 +1253,10 @@
         document.getElementById('rec-total').textContent = formatNPR(total);
         document.getElementById('receipt-modal').classList.remove('hidden');
 
+        // Clear all 3 customer fields after checkout
         document.getElementById('pos-customer-name').value = '';
         document.getElementById('pos-customer-phone').value = '';
+        document.getElementById('pos-customer-address').value = '';
         saveState();
         renderCart();
 
@@ -1240,6 +1268,16 @@
         isCheckingOut = false;
         if (checkoutBtn) checkoutBtn.disabled = false;
       }
+    }
+
+    function shareWhatsAppReceipt() {
+      if (!lastReceiptText) return;
+      const digits = (lastCustomerPhone || '').replace(/\D/g, '');
+      const waNumber = digits.length === 10 ? '977' + digits : digits;
+      const url = waNumber
+        ? `https://wa.me/${waNumber}?text=${encodeURIComponent(lastReceiptText)}`
+        : `https://wa.me/?text=${encodeURIComponent(lastReceiptText)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function copyWhatsAppReceipt() {
